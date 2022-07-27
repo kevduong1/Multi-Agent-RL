@@ -111,9 +111,9 @@ class IDQN:
                     agent_i : observations.shape[0] : len(self.agent_names)
                 ]
                 if obs_i.ndim == 3:
-                    obs_i = torch.Tensor(obs_i).unsqueeze(1).to("cuda:0")
+                    obs_i = torch.Tensor(obs_i).unsqueeze(1).to(self.device)
                 else:
-                    obs_i = torch.Tensor(obs_i).to("cuda:0")
+                    obs_i = torch.Tensor(obs_i).to(self.device)
 
                 q_vals_i = self.q_nets[self.agent_names[agent_i]].forward(obs_i)
                 q_tuple = q_vals_i.max(dim=1)
